@@ -11,6 +11,8 @@ public class Main {
         Game game = new Game();
         game.initialize(player1, player2);
 
+        //  test
+
         int startX1, startY1, startX2, startY2, endX1, endY1, endX2, endY2;
 
         Scanner input = new Scanner(System.in);
