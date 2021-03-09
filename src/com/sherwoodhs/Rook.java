@@ -1,11 +1,9 @@
 package com.sherwoodhs;
 
 public class Rook extends Piece {
-    private Spot spot;
 
     public Rook(Spot spot, boolean white) {
         super(white);
-        this.spot = spot;
     }
 
     @Override
@@ -48,11 +46,9 @@ public class Rook extends Piece {
                         }
                     }
                 }
-                //if end has an enemy piece, capture it
-                if((end.getPiece().isWhite() && !start.getPiece().isWhite()) || (!end.getPiece().isWhite() && start.getPiece().isWhite())) {
-                    end.getPiece().setKilled(true);
-                }
+
                 return true;
+                }
             }
         }
     }
