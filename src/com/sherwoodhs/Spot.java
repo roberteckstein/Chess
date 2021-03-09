@@ -32,6 +32,18 @@ public class Spot {
         this.piece = p;
     }
 
+    public void setEmpty(boolean empty){
+
+      this.empty = empty;
+      
+    }
+
+    public boolean isEmpty(){
+
+      return this.empty;
+
+    }
+
     public int getX()
     {
         return this.x;
