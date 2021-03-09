@@ -3,6 +3,7 @@ package com.sherwoodhs;
 public class Spot {
 
     private Piece piece;
+    private boolean empty;
     private int x;
     private int y;
 
@@ -11,6 +12,14 @@ public class Spot {
         this.setPiece(piece);
         this.setX(x);
         this.setY(y);
+        this.empty = false;
+    }
+
+    public Spot(int x, int y, boolean empty)
+    {
+        this.setX(x);
+        this.setY(y);
+        this.empty = empty;
     }
 
     public Piece getPiece()
