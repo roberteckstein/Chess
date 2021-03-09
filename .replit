@@ -1,2 +1,2 @@
-language = "bash"
+language = "java10"
 run = "javac -classpath src src/com/sherwoodhs/Main.java && java -classpath src com.sherwoodhs.Main"
