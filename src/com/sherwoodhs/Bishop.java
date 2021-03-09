@@ -16,4 +16,12 @@ public class Bishop extends Piece{
 
         return (x == y && (x != 0 || y != 0));
     }
+
+    public String toString() {
+        if (this.isWhite()) {
+            return " wB ";
+        } else {
+            return " bB ";
+        }
+    }
 }

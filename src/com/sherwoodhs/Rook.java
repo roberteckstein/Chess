@@ -2,7 +2,7 @@ package com.sherwoodhs;
 
 public class Rook extends Piece {
 
-    public Rook(Spot spot, boolean white) {
+    public Rook(boolean white) {
         super(white);
     }
 
@@ -50,5 +50,14 @@ public class Rook extends Piece {
             }
         }
     }
+
+    public String toString() {
+        if (this.isWhite()) {
+            return " wR ";
+        } else {
+            return " bR ";
+        }
+    }
+
 }
 

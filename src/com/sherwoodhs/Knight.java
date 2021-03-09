@@ -24,4 +24,12 @@ public class Knight extends Piece {
         int y = Math.abs(start.getY() - end.getY());
         return x * y == 2;
     }
+
+    public String toString() {
+        if (this.isWhite()) {
+            return " wN ";
+        } else {
+            return " bN ";
+        }
+    }
 }

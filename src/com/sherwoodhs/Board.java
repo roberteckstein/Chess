@@ -1,7 +1,9 @@
 package com.sherwoodhs;
 
+import java.util.Arrays;
+
 public class Board {
-    Spot[][] boxes;
+    Spot[][] boxes = new Spot[8][8];
 
     public Board() {
         this.resetBoard();
@@ -48,6 +50,13 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             boxes[6][i] = new Spot(6, i, new Pawn(false));
         }
+
+        // initialize other squares
+        for (int i = 2; i <= 6; i++) {
+            for (int j = 0; j < 8; j++) {
+                boxes[i][j] = new Spot(i, j, null);
+            }
+        }
     }
 
     public void flipBoard() {
@@ -67,5 +76,19 @@ public class Board {
             }
         }
 
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder drawBoard = new StringBuilder();
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                drawBoard.append(boxes[i][j]).append(" ");
+            }
+            drawBoard.append("\n");
+        }
+
+        return drawBoard.toString();
     }
 }

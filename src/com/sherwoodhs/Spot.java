@@ -63,4 +63,13 @@ public class Spot {
     {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        try {
+            return piece.toString();
+        } catch(Exception e) {
+            return " ☐☐";
+        }
+    }
 }

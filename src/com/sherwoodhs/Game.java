@@ -9,7 +9,15 @@ public class Game {
   private GameStatus status;
   private List<Move> movesPlayed;
 
-  
+
+  // just to test printing board
+  public Game() {
+    board = new Board();
+    System.out.println(board);
+    board.flipBoard();
+    System.out.println("");
+    System.out.println(board);
+  }
 
   public void initialize(Player p1, Player p2) {
     players[0] = p1;

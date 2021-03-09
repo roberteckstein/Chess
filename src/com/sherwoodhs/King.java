@@ -60,4 +60,12 @@ public class King extends Piece {
 
         return true;
     }
+
+    public String toString() {
+        if (this.isWhite()) {
+            return " wK ";
+        } else {
+            return " bK ";
+        }
+    }
 }
