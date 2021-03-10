@@ -44,9 +44,9 @@ public class Main {
             startY = Character.getNumericValue(start.charAt(1));
             endY = Character.getNumericValue(end.charAt(1));
 
-           System.out.println(startX + "-" + endX);
+            game.playerMove(player1, startX, startY, endX, endY);
 
-          //  game.playerMove(player1, startX1, startY1, endX1, endY1);
+
             if (game.isEnd()) {
                 break;
             }
@@ -74,7 +74,7 @@ public class Main {
             startY = start.charAt(1);
             endY = start.charAt(1);
 
-         //   game.playerMove(player2, startX2, startY2, endX2, endY2);
+            game.playerMove(player2, startX, startY, endX, endY);
             if (game.isEnd()) {
                 break;
             }

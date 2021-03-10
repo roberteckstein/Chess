@@ -25,8 +25,8 @@ public class Board {
         boxes[0][0] = new Spot(0, 0, new Rook(true));
         boxes[0][1] = new Spot(0, 1, new Knight(true));
         boxes[0][2] = new Spot(0, 2, new Bishop(true));
-        boxes[0][3] = new Spot(0, 3, new Queen(true));
-        boxes[0][4] = new Spot(0, 4, new King(true));
+        boxes[0][3] = new Spot(0, 3, new King(true));
+        boxes[0][4] = new Spot(0, 4, new Queen(true));
         boxes[0][5] = new Spot(0, 5, new Bishop(true));
         boxes[0][6] = new Spot(0, 6, new Knight(true));
         boxes[0][7] = new Spot(0, 7, new Rook(true));
@@ -41,8 +41,8 @@ public class Board {
         boxes[7][0] = new Spot(7, 0, new Rook(false));
         boxes[7][1] = new Spot(7, 1, new Knight(false));
         boxes[7][2] = new Spot(7, 2, new Bishop(false));
-        boxes[7][3] = new Spot(7, 3, new Queen(false));
-        boxes[7][4] = new Spot(7, 4, new King(false));
+        boxes[7][3] = new Spot(7, 3, new King(false));
+        boxes[7][4] = new Spot(7, 4, new Queen(false));
         boxes[7][5] = new Spot(7, 5, new Bishop(false));
         boxes[7][6] = new Spot(7, 6, new Knight(false));
         boxes[7][7] = new Spot(7, 7, new Rook(false));
@@ -88,12 +88,12 @@ public class Board {
         // add letters for files
         if (white) {
             for (int i = 0; i < 8; i++) {
-                drawBoard.append("  ").append(files[i]).append("  ");
+                drawBoard.append("  ").append(files[Math.abs(i - 7)]).append("  ");
             }
             drawBoard.append("\n");
         } else {
             for (int i = 0; i < 8; i++) {
-                drawBoard.append("  ").append(files[Math.abs(i - 7)]).append("  ");
+                drawBoard.append("  ").append(files[i]).append("  ");
             }
             drawBoard.append("\n");
         }
