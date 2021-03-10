@@ -16,6 +16,10 @@ public class Game {
     System.out.println(board);
   }
 
+  public Board getBoard() {
+    return board;
+  }
+
   public void initialize(Player p1, Player p2) {
     players[0] = p1;
     players[1] = p2;
