@@ -31,19 +31,23 @@ public boolean canMove(Board board,Spot start, Spot end) {
 
     //If pawn moves forward 1 space
     if (y == 1 && x == 0) {
-     return true;
+      firstMove = false;
+      return true;
 
    //If the pawn is capturing another piece moving 1 diagonally is legal
     } else if (x + y == 2 || x + y == 0) {
       if(end.isEmpty()) {
         return false;
       }else{
+        firstMove = false;
         return true;
       }
 
     //If it's the pawns first move, moving two spaces is legal
     } else if (firstMove && y == 2 && x == 0) {
-        //Currently has ability to pass through pieces, need to fix
+        if (end.getY() - 1 == 1 && end.getPiece().isWhite() == this.isWhite()) {
+            return false;
+        }
         firstMove = false;
         return true;
     }
