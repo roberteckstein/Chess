@@ -32,7 +32,6 @@ public class Board {
         boxes[0][7] = new Spot(0, 7, new Rook(true));
 
         // initialize white pawn row
-
         for (int i = 0; i < 8; i++) {
             boxes[1][i] = new Spot(1, i, new Pawn(true));
         }
@@ -48,7 +47,6 @@ public class Board {
         boxes[7][7] = new Spot(7, 7, new Rook(false));
 
         // initialize black pawn row
-
         for (int i = 0; i < 8; i++) {
             boxes[6][i] = new Spot(6, i, new Pawn(false));
         }
