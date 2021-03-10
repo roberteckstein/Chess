@@ -1,3 +1,4 @@
+//Made by Andrew
 package com.sherwoodhs;
 
 public class Rook extends Piece {
@@ -13,13 +14,14 @@ public class Rook extends Piece {
         if (end.getPiece().isWhite() == this.isWhite()) {
             return false;
         } else {
+            //checks if selection is on either the same x or y, easy optimization
             if (end.getX() != start.getX() && end.getY() != start.getY()) {
                 return false;
             } else {
                 //moving right
                 if(start.getX() < end.getX()) {
                     for (int i = start.getX() + 1; i <= end.getX() - 1; i++) {
-                        if(board.getBox(i,start.getY()).getPiece() != null) {
+                        if(board.getBox(i,start.getY()).isEmpty()) {
                             return false;
                         }
                     }
@@ -27,7 +29,7 @@ public class Rook extends Piece {
                 //moving left
                 else if(start.getX() > end.getX()) {
                     for (int i = start.getX() - 1; i >= end.getX() + 1; i--) {
-                        if(board.getBox(i,start.getY()).getPiece() != null) {
+                        if(board.getBox(i,start.getY()).isEmpty()) {
                             return false;
                         }
                     }
@@ -35,7 +37,7 @@ public class Rook extends Piece {
                 //moving down
                 else if(start.getY() < end.getY()) {
                     for (int i = start.getY() + 1; i <= end.getY() - 1; i++) {
-                        if(board.getBox(start.getX(), i).getPiece() != null) {
+                        if(board.getBox(start.getX(), i).isEmpty()) {
                             return false;
                         }
                     }
@@ -43,7 +45,7 @@ public class Rook extends Piece {
                 //moving up
                 else if(start.getY() > end.getY()) {
                     for (int i = start.getY() - 1; i >= end.getY() + 1; i--) {
-                        if(board.getBox(start.getX(), i).getPiece() != null) {
+                        if(board.getBox(start.getX(), i).isEmpty()) {
                             return false;
                         }
                     }

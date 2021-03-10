@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Game {
   private Player[] players = new Player[2];
-  private Board board;
+  private Board board = new Board();
   private Player currentTurn;
   private GameStatus status;
   private List<Move> movesPlayed;
@@ -12,7 +12,6 @@ public class Game {
 
   // just to test printing board
   public Game() {
-    board = new Board();
     board.flipBoard();
     System.out.println(board);
   }
@@ -48,6 +47,8 @@ public class Game {
     Spot startBox = board.getBox(startX, startY);
     Spot endBox = board.getBox(startY, endY);
     Move move = new Move(player, startBox, endBox);
+    board.flipBoard();
+    System.out.println(board);
     return this.makeMove(move, player);
   }
 
