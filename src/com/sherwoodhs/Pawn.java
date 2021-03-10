@@ -45,7 +45,7 @@ public boolean canMove(Board board,Spot start, Spot end) {
 
     //If it's the pawns first move, moving two spaces is legal
     } else if (firstMove && y == 2 && x == 0) {
-        if (end.getY() - 1 == 1 && end.getPiece().isWhite() == this.isWhite()) {
+        if (end.getY() - 1 == 1 && !end.isEmpty) {
             return false;
         }
         firstMove = false;
