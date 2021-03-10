@@ -15,11 +15,11 @@ public class Spot {
         this.empty = false;
     }
 
-    public Spot(int x, int y, boolean empty)
+    public Spot(int x, int y)
     {
         this.setX(x);
         this.setY(y);
-        this.empty = empty;
+        this.empty = true;
     }
 
     public Piece getPiece()
