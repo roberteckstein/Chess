@@ -30,7 +30,7 @@ public boolean canMove(Board board,Spot start, Spot end) {
     int y = Math.abs(start.getY() - end.getY());
 
     //If pawn moves forward 1 space
-    if (y == 1 && x == 0) {
+    if (y == 1 && x == 0 && end.isEmpty()) {
       firstMove = false;
       return true;
 
