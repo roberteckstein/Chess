@@ -13,30 +13,38 @@ public class Main {
 
         //  test
 
-        int startX1, startY1, startX2, startY2, endX1, endY1, endX2, endY2;
+        int startX = 0, startY = 0, endX = 0, endY = 0;
+        String start, end;
+        final char[] files = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
         Scanner input = new Scanner(System.in);
 
         while (true) {
 
             //  Ask player 1 for a move
-            System.out.println("Enter starting square's X position");
+            System.out.println("Player 1:");
+            System.out.println("Enter starting square");
 
-             startX1 = input.nextInt();
+            start = input.next().toUpperCase();
 
-            System.out.println("Enter starting square's Y position");
+            System.out.println("Enter ending square");
 
-             startY1 = input.nextInt();
+            end = input.next().toUpperCase();
 
-            System.out.println("Enter ending square's X position");
+            for (int i = 0; i <= 7; i++) {
+                if (start.charAt(0) == files[i]) {
+                    startX = i + 1;
+                }
 
-             endX1 = input.nextInt();
+                if (end.charAt(0) == files[i]) {
+                    endX = i + 1;
+                }
+            }
 
-            System.out.println("Enter ending square's Y position");
+            startY = Character.getNumericValue(start.charAt(1));
+            endY = Character.getNumericValue(end.charAt(1));
 
-             endY1 = input.nextInt();
-
-           
+           System.out.println(startX + "-" + endX);
 
           //  game.playerMove(player1, startX1, startY1, endX1, endY1);
             if (game.isEnd()) {
@@ -44,22 +52,27 @@ public class Main {
             }
 
             //  Ask player 2 for a move
+            System.out.println("Player 2:");
+            System.out.println("Enter starting square");
 
-            System.out.println("Enter starting square's X position");
+            start = input.next();
 
-             startX2 = input.nextInt();
+            System.out.println("Enter ending square");
 
-            System.out.println("Enter starting square's Y position");
+            end = input.next();
 
-             startY2 = input.nextInt();
+            for (int i = 0; i < 8; i++) {
+                if (start.charAt(0) == files[i]) {
+                    startX = i;
+                }
 
-            System.out.println("Enter ending square's X position");
+                if (end.charAt(0) == files[i]) {
+                    endX = i;
+                }
+            }
 
-             endX2 = input.nextInt();
-
-            System.out.println("Enter ending square's Y position");
-
-             endY2 = input.nextInt();
+            startY = start.charAt(1);
+            endY = start.charAt(1);
 
          //   game.playerMove(player2, startX2, startY2, endX2, endY2);
             if (game.isEnd()) {

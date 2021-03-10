@@ -3,7 +3,7 @@ package com.sherwoodhs;
 import java.util.List;
 
 public class Game {
-  private Player[] players;
+  private Player[] players = new Player[2];
   private Board board;
   private Player currentTurn;
   private GameStatus status;
@@ -13,9 +13,7 @@ public class Game {
   // just to test printing board
   public Game() {
     board = new Board();
-    System.out.println(board);
     board.flipBoard();
-    System.out.println("");
     System.out.println(board);
   }
 
@@ -31,7 +29,7 @@ public class Game {
       this.currentTurn = p2;
     }
 
-    movesPlayed.clear();
+    // movesPlayed.clear();
   }
 
   public boolean isEnd() {
