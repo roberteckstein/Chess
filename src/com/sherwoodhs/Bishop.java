@@ -2,6 +2,8 @@ package com.sherwoodhs;
 
 public class Bishop extends Piece{
 
+    // Hayden deBoer
+
     public Bishop(boolean white) {
         super(white);
     }

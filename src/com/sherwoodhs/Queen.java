@@ -2,6 +2,8 @@ package com.sherwoodhs;
 
 public class Queen extends Piece{
 
+    // Andrew Hiser and Hayden deBoer
+
     public Queen(boolean white) {
         super(white);
     }

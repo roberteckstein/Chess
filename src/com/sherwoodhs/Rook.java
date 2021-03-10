@@ -2,6 +2,8 @@ package com.sherwoodhs;
 
 public class Rook extends Piece {
 
+    // Andrew Hiser
+
     public Rook(boolean white) {
         super(white);
     }
