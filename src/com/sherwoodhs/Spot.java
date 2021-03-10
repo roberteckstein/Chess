@@ -66,9 +66,10 @@ public class Spot {
 
     @Override
     public String toString() {
-        try {
+      
+        if (!this.isEmpty()){
             return piece.toString();
-        } catch(Exception e) {
+        } else {
             return " ☐☐";
         }
     }
