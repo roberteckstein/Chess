@@ -30,7 +30,7 @@ public boolean canMove(Board board,Spot start, Spot end) {
     int y = Math.abs(start.getY() - end.getY());
 
     //If pawn moves forward 1 space
-    if (y == 1 && x == 0) {
+    if (y == 1 && x == 0 && end.isEmpty()) {
       firstMove = false;
       return true;
 
@@ -45,7 +45,7 @@ public boolean canMove(Board board,Spot start, Spot end) {
 
     //If it's the pawns first move, moving two spaces is legal
     } else if (firstMove && y == 2 && x == 0) {
-        if (end.getY() - 1 == 1 && end.getPiece().isWhite() == this.isWhite()) {
+        if (end.getY() - 1 == 1 && !end.isEmpty) {
             return false;
         }
         firstMove = false;
