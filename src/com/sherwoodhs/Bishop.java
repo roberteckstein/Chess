@@ -9,14 +9,15 @@ public class Bishop extends Piece{
     }
 
     public boolean canMove(Board board, Spot start, Spot end) {
-        if(end.getPiece().isWhite() == this.isWhite()) {
+        if(start.getX() == end.getX() || start.getY() == end.getY()) {
+            // Checking if not moved diagonally
             return false;
+        } else {
+            if(Math.abs(start.getY() - end.getX()) != Math.abs(start.getY() - end.getY())) {
+                // Checking if movement was diagonal
+                return false;
+            }
         }
-
-        int x = Math.abs(start.getX() - end.getX());
-        int y = Math.abs(start.getY() - end.getY());
-
-        return (x == y && (x != 0 || y != 0));
     }
 
     public String toString() {
