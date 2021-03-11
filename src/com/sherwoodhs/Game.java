@@ -49,10 +49,8 @@ public class Game {
 
   public boolean playerMove(Player player, int startX, int startY, int endX, int endY) {
     Spot startBox = board.getBox(startX, startY);
-    Spot endBox = board.getBox(startY, endY);
+    Spot endBox = board.getBox(endX, endY);
     Move move = new Move(player, startBox, endBox);
-    board.flipBoard();
-    System.out.println(board);
     return this.makeMove(move, player);
   }
 

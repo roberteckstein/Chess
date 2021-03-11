@@ -30,8 +30,6 @@ public class Bishop extends Piece{
       return false;
     }
 
-    }
-
     public String toString() {
         if (this.isWhite()) {
             return " wB ";

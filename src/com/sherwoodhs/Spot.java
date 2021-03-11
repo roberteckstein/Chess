@@ -70,7 +70,7 @@ public class Spot {
         if (!this.isEmpty()){
             return piece.toString();
         } else {
-            return " ☐☐ ";
+            return " ☐☐";
         }
     }
 }
