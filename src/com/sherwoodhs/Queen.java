@@ -9,6 +9,11 @@ public class Queen extends Piece{
     }
 
     public boolean canMove(Board board, Spot start, Spot end) {
+
+        if(end.getPiece().isWhite() == this.isWhite()) {
+            return false;
+        }
+
         return false;
     }
 

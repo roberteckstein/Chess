@@ -10,9 +10,8 @@ public class Bishop extends Piece{
 
     public boolean canMove(Board board, Spot start, Spot end) {
 
-      if (end.getPiece().isWhite() == this.isWhite()) {
+      if(end.getPiece().isWhite() == this.isWhite()) {
         return false;
-        
       }
 
       if(Math.abs(end.getX() - start.getX()) != Math.abs(end.getY() - start.getY())) {
@@ -26,7 +25,7 @@ public class Bishop extends Piece{
             }
         }
         
-      // generic return statment to avoid error while testing
+      // generic return statement to avoid error while testing
       return false;
     }
 
