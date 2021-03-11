@@ -10,9 +10,20 @@ public class Queen extends Piece{
 
     public boolean canMove(Board board, Spot start, Spot end) {
 
+        int deltaX = end.getX() - start.getX();
+        int deltaY = end.getY() - start.getY();
+
         if(end.getPiece().isWhite() == this.isWhite()) {
             return false;
         }
+
+        /*
+        if(Math.abs(deltaX) = Math.abs(deltaY)) {
+          // Checking if moved diagonally
+
+        } else if(deltaX == 0 ^ deltaY == 0) {
+
+        }*/
 
         return false;
     }
