@@ -10,6 +10,45 @@ public class Bishop extends Piece{
 
     public boolean canMove(Board board, Spot start, Spot end) {
 
+      /*
+            int deltaX = end.getX() - start.getX();
+      int deltaY = end.getY() - start.getY();
+
+      if(end.getPiece().isWhite() == this.isWhite()) {
+        return false;
+      }
+
+      if(Math.abs(deltaX) != Math.abs(deltaY)) {
+          // Checking if not moved diagonally
+           return false;
+      } 
+      
+      //Moving forward right
+      if (deltaX > 0 && deltaY > 0){
+        for (int i = 0; i < Math.abs(deltaX); i++){
+
+          if (!board.getBox(start.getX() + i,  start.getY() + i;).isEmpty()) {
+              return false;
+            }
+            return true;
+        }
+      
+  
+      }
+      //Moving Forward left
+      else if(deltaX > 0 && deltaY < 0){
+        
+      }
+      //Moving downward right
+      else if(deltaX < 0 && deltaY > 0){
+      
+      }
+      //Moving downward left
+      else{
+
+      }
+      */
+
       if(end.getPiece().isWhite() == this.isWhite()) {
         return false;
       }
