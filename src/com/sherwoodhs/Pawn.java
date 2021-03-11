@@ -14,6 +14,14 @@ public class Pawn extends Piece {
     return false;
   }
 */
+  public void pawnPromotion(Board board, int x, int y) {
+    end.getPiece().setKilled();
+      if (this.isWhite) {
+        boxes[x][y] = new Spot(x, y, new Queen(true));
+      } else {
+        boxes[x][y] = new Spot(x, y, new Queen(false));
+    }
+  }
 
   @Override
   public boolean canMove(Board board,Spot start, Spot end) {
@@ -30,14 +38,8 @@ public class Pawn extends Piece {
       //If pawn moves forward 1 space
       if (y == 1 && x == 0 && end.isEmpty()) {
         firstMove = false;
-        //Check for promotion
-        if (end.getY == 7) {
-          end.getPiece().setKilled();
-          if (this.isWhite) {
-            boxes[x][y] = new Spot(x, y, new Queen(true));
-          } else {
-            boxes[x][y] = new Spot(x, y, new Queen(false));
-          }
+        if (end.getY() == 7) {
+          pawnPromotion(board, x, y);
         }
         return true;
     
@@ -47,15 +49,9 @@ public class Pawn extends Piece {
           return false;
         }else{
           firstMove = false;
-          //Check for promotion
-          if (end.getY == 7) {
-            end.getPiece().setKilled();
-            if (this.isWhite) {
-              boxes[x][y] = new Spot(x, y, new Queen(true));
-            } else {
-              boxes[x][y] = new Spot(x, y, new Queen(false));
-            }
-        }
+          if (end.getY() == 7) {
+            pawnPromotion(board, x, y);
+          }
           return true;
         }
 
