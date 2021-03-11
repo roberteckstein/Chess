@@ -7,13 +7,14 @@ public class Pawn extends Piece {
   public Pawn(boolean white) {
     super(white);
   }
-/*
+
+
   // temp for testing
   @Override
   public boolean canMove(Board board, Spot start, Spot end) {
     return false;
   }
-*/
+/*
   public void pawnPromotion(Board board, int x, int y) {
     end.getPiece().setKilled();
       if (this.isWhite) {
@@ -38,9 +39,6 @@ public class Pawn extends Piece {
       //If pawn moves forward 1 space
       if (y == 1 && x == 0 && end.isEmpty()) {
         firstMove = false;
-        if (end.getY() == 7) {
-          pawnPromotion(board, x, y);
-        }
         return true;
     
         //If the pawn is capturing another piece moving 1 diagonally it is legal
@@ -49,9 +47,6 @@ public class Pawn extends Piece {
           return false;
         }else{
           firstMove = false;
-          if (end.getY() == 7) {
-            pawnPromotion(board, x, y);
-          }
           return true;
         }
 
@@ -64,7 +59,7 @@ public class Pawn extends Piece {
           return true;
       }
     }
-
+*/
   public String toString() {
     if (this.isWhite()) {
       return " wP ";
