@@ -24,6 +24,12 @@ public class Bishop extends Piece{
             } else {
               if(start.getX() < end.getX() && start.getY() < end.getY()) {
                   // Moving right/up
+                  for(int i = start.getX() + 1; i < end.getX() - 1; i++) {
+                      if(!board.getBox(i, i).isEmpty()) {
+                          return false;
+                      }
+                  }
+                  return true;
               } else if(start.getX() > end.getX() && start.getY() < end.getY()) {
                   // Moving left/up
               } else if(start.getX() < end.getX() && start.getY() > end.getY()) {
