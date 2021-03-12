@@ -3,6 +3,7 @@ package com.sherwoodhs;
 public class Queen extends Piece{
 
     // Andrew Hiser and Hayden deBoer
+    // Andrew have you been working on this at all?
 
     public Queen(boolean white) {
         super(white);
@@ -17,13 +18,49 @@ public class Queen extends Piece{
             return false;
         }
 
-        /*
-        if(Math.abs(deltaX) = Math.abs(deltaY)) {
-          // Checking if moved diagonally
+        // Checking if moved diagonally
+        if(Math.abs(deltaX) == Math.abs(deltaY)) {
+            //Moving up right
+            if(deltaX > 0 && deltaY > 0){
+                for(int i = 0; i < Math.abs(deltaX); i++){
+                    if(!board.getBox(start.getX() + i,  start.getY() + i).isEmpty()) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            //Moving up left
+            else if(deltaX < 0 && deltaY > 0){
+                for(int i = 0; i < Math.abs(deltaX); i++) {
+                    if(!board.getBox(start.getX() - i, start.getY() + i).isEmpty()) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            //Moving down right
+            else if(deltaX > 0 && deltaY < 0){
+                for(int i = 0; i < Math.abs(deltaX); i++) {
+                    if(!board.getBox(start.getX() + i, start.getY() - i).isEmpty()) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            //Moving down left
+            else if(deltaX < 0 && deltaY < 0){
+                for(int i = 0; i < Math.abs(deltaX); i++) {
+                    if(!board.getBox(start.getX() - i, start.getY() - i).isEmpty()) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
+        // Checking if moved along only one axis
+        //else if(deltaX == 0 ^ deltaY == 0) {
 
-        } else if(deltaX == 0 ^ deltaY == 0) {
-
-        }*/
+        //}
 
         return false;
     }
