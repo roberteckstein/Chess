@@ -33,11 +33,11 @@ public class Main {
 
             for (int i = 0; i <= 7; i++) {
                 if (start.charAt(0) == files[i]) {
-                    startX = i + 1;
+                    startX = i;
                 }
 
                 if (end.charAt(0) == files[i]) {
-                    endX = i + 1;
+                    endX = i;
                 }
             }
 

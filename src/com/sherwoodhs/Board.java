@@ -20,6 +20,10 @@ public class Board {
         return boxes[x][y];
     }
 
+    public void setBox(int x, int y, Spot spot) {
+        this.boxes[x][y] = spot;
+    }
+
     public void resetBoard() {
         // initialize white back row
         boxes[0][0] = new Spot(0, 0, new Rook(true));
