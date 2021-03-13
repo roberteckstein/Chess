@@ -22,6 +22,11 @@ public class Knight extends Piece {
         return x * y == 2;
     }
 
+    @Override
+    public boolean performMove(Board board, Spot start, Spot end) {
+        return false;
+    }
+
     public String toString() {
         if (this.isWhite()) {
             return " wN ";

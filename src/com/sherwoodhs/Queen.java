@@ -107,6 +107,11 @@ public class Queen extends Piece {
     return false;
   }
 
+  @Override
+  public boolean performMove(Board board, Spot start, Spot end) {
+    return false;
+  }
+
   public String toString() {
     if (this.isWhite()) {
       return " wQ ";
