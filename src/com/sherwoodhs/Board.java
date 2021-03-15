@@ -3,6 +3,7 @@ package com.sherwoodhs;
 import java.util.Arrays;
 
 public class Board {
+
     Spot[][] boxes = new Spot[8][8];
     final char[] files = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
     boolean white = true;
@@ -63,42 +64,15 @@ public class Board {
         }
     }
 
-    public void flipBoard() {
-        Spot[][] temp = new Spot[8][8];
-        white = !white;
-
-        // make new identical array
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                temp[i][j] = boxes[i][j];
-            }
-        }
-
-        // flip array
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                boxes[i][j] = temp[Math.abs(i - 7)][Math.abs(j - 7)];
-            }
-        }
-
-    }
-
     @Override
     public String toString() {
+
         StringBuilder drawBoard = new StringBuilder();
 
-        // add letters for files
-        if (white) {
-            for (int i = 0; i < 8; i++) {
-                drawBoard.append("  ").append(files[Math.abs(i - 7)]).append("  ");
-            }
-            drawBoard.append("\n");
-        } else {
-            for (int i = 0; i < 8; i++) {
-                drawBoard.append("  ").append(files[i]).append("  ");
-            }
-            drawBoard.append("\n");
+        for (int i = 0; i < 8; i++) {
+            drawBoard.append("  ").append(files[i]).append("  ");
         }
+        drawBoard.append("\n");
 
         // add board layout and rank numbers
         for (int i = 0; i < 8; i++) {
