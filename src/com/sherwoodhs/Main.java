@@ -1,4 +1,6 @@
 package com.sherwoodhs;
+import com.sherwoodhs.gui.ChessBoard;
+
 import java.util.Scanner;
 
 public class Main {
@@ -8,8 +10,15 @@ public class Main {
         HumanPlayer player1 = new HumanPlayer(true);
         HumanPlayer player2 = new HumanPlayer(false);
 
-        Game game = new Game();
+        Game game = Game.getInstance();
         game.initialize(player1, player2);
+
+        //  Create and display the GUI
+
+        ChessBoard cb = new ChessBoard();
+        cb.setVisible(true);
+
+        game.setCurrentPlayer(player1);
 
         //  test
 
@@ -21,38 +30,39 @@ public class Main {
 
         while (true) {
 
+            System.out.println(game.getBoard());
+
             //  Ask player 1 for a move
-            System.out.println("Player 1:");
+            System.out.println(player1);
             System.out.println("Enter starting square");
-
             start = input.next().toUpperCase();
-
             System.out.println("Enter ending square");
-
             end = input.next().toUpperCase();
 
             for (int i = 0; i <= 7; i++) {
                 if (start.charAt(0) == files[i]) {
-                    startX = i;
+                    startY = i;
                 }
 
                 if (end.charAt(0) == files[i]) {
-                    endX = i;
+                    endY = i;
                 }
             }
 
-            startY = Character.getNumericValue(start.charAt(1));
-            endY = Character.getNumericValue(end.charAt(1));
+            startX = Character.getNumericValue(start.charAt(1)) - 1;
+            endX = Character.getNumericValue(end.charAt(1)) - 1;
 
+            System.out.println(player1 + " move from " + startX + "," + startY + " to " + endX + "," + endY);
             game.playerMove(player1, startX, startY, endX, endY);
-
 
             if (game.isEnd()) {
                 break;
             }
 
+            System.out.println(game.getBoard());
+
             //  Ask player 2 for a move
-            System.out.println("Player 2:");
+            System.out.println(player2);
             System.out.println("Enter starting square");
 
             start = input.next();
@@ -63,17 +73,18 @@ public class Main {
 
             for (int i = 0; i < 8; i++) {
                 if (start.charAt(0) == files[i]) {
-                    startX = i;
+                    startY = i;
                 }
 
                 if (end.charAt(0) == files[i]) {
-                    endX = i;
+                    endY = i;
                 }
             }
 
-            startY = start.charAt(1);
-            endY = start.charAt(1);
+            startX = Character.getNumericValue(start.charAt(1)) - 1;
+            endX = Character.getNumericValue(end.charAt(1)) - 1;
 
+            System.out.println(player2 + " move from " + startX + "," + startY + " to " + endX + "," + endY);
             game.playerMove(player2, startX, startY, endX, endY);
             if (game.isEnd()) {
                 break;
