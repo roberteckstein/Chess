@@ -8,9 +8,9 @@ public class Pawn extends Piece {
     super(white);
   }
 
-  //For testing
   @Override
   public boolean performMove(Board board, Spot start, Spot end) {
+    firstMove = false;
     return true;
   }
   
@@ -30,39 +30,40 @@ public class Pawn extends Piece {
   }
 */
     @Override
-    public boolean canMove(Board board,Spot start, Spot end) {
+    public boolean canMove(Board board, Spot start, Spot end) {
 
       //Stops pawn from moving onto space with another white piece
-      if (end.getPiece().isWhite() == this.isWhite()) {
+      if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
         return false;
       }
 
-      int x = Math.abs(start.getX() - end.getX());
-      int y = Math.abs(start.getY() - end.getY());
+      //This is correct. The x and y are purposely reversed
+      int y = Math.abs(start.getX() - end.getX());
+      int x = Math.abs(start.getY() - end.getY());
 
-
-      //If pawn moves forward 1 space
+      // If pawn moves forward 1 space
       if (y == 1 && x == 0 && end.isEmpty()) {
-        firstMove = false;
-        return true;
-
-      //If the pawn is capturing another piece moving 1 diagonally it is legal
-      } else if (x + y == 2 || x + y == 0) {
-        if(end.isEmpty()) {
-          return false;
-        }else{
-          firstMove = false;
-          return true;
-        }
-
-      //If it's the pawns first move, moving two spaces is legal
+        //  Can only move forward
+        if (isWhite() && start.getX() < end.getX())
+           return true;
+        else if (!isWhite() && start.getX() > end.getX())
+           return true;
+        else
+           return false;
+      // If it's the pawns first move, moving two spaces is legal
       } else if (firstMove && y == 2 && x == 0) {
-        if (end.getY() - 1 == 1 && !end.isEmpty()) {
+        if (end.getX() - 1 == 1 && !end.isEmpty()) {
           return false;
         } else {
-          firstMove = false;
           return true;
         }
+      } else if (x == 1 && !end.isEmpty()) {
+        if (isWhite() && y == 1 && start.getX() < end.getX())
+          return true;
+        else if (!isWhite() && y == 1 && start.getX() > end.getX())
+          return true;
+        else
+          return false;
       } else {
         return false;
       }
