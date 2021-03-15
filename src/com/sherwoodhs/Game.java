@@ -100,7 +100,14 @@ public class Game {
         return false;
       }
 
+      // didn't move their own piece?
       if (sourcePiece.isWhite() != player.isWhiteSide()) {
+        return false;
+      }
+
+      // didn't move the piece to a new square?
+      if ((move.getStart().getX() == move.getEnd().getX()) &&
+            (move.getStart().getY() == move.getEnd().getY())) {
         return false;
       }
 

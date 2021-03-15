@@ -155,10 +155,6 @@ public class ChessBoardGraphic extends JLabel {
                         ChessBoard chessBoard = square.getChessBoard();
                         Board board = Game.getInstance().getBoard();
 
-                        System.out.println("Piece " + sourceSpot.getPiece() + " moves from " +
-                                sourceSpot.getX() + "," + sourceSpot.getY() + " to " +
-                                targetSpot.getX() + "," + targetSpot.getY());
-
                         //  What was sent was a serialized copy of the Spot object, not the original Spot object.
                         //  We need to obtain the actual Spot object to make a change to the chess board.
 
@@ -167,10 +163,17 @@ public class ChessBoardGraphic extends JLabel {
                         //  If this is a legal move, then process it and signal the drop is complete.
 
                         if (sourceSpot.getPiece().canMove(board, square.getSpot(), targetSpot)) {
-                            Game.getInstance().playerMove(Game.getInstance().getCurrentPlayer(),
+
+                            System.out.println("Piece " + sourceSpot.getPiece() + " moves from " +
+                                    sourceSpot.getX() + "," + sourceSpot.getY() + " to " +
+                                    targetSpot.getX() + "," + targetSpot.getY());
+
+                            boolean result = Game.getInstance().playerMove(Game.getInstance().getCurrentPlayer(),
                                     sourceSpot.getX(), sourceSpot.getY(),
                                     targetSpot.getX(), targetSpot.getY());
                             evt.dropComplete(true);
+                        } else {
+                            chessBoard.redrawBoard();
                         }
                     }
                 }
