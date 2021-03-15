@@ -65,7 +65,8 @@ public class Rook extends Piece {
 
   @Override
   public boolean performMove(Board board, Spot start, Spot end) {
-    return false;
+    //  No special items to be checked for after a move
+    return true;
   }
 
   public String toString() {

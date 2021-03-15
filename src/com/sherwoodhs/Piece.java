@@ -1,6 +1,8 @@
 package com.sherwoodhs;
 
-public abstract class Piece {
+import java.io.Serializable;
+
+public abstract class Piece implements Serializable {
 
     private boolean killed = false;
     private boolean white = false;

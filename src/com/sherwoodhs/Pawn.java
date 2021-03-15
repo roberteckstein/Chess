@@ -17,7 +17,8 @@ public class Pawn extends Piece {
 
   @Override
   public boolean performMove(Board board, Spot start, Spot end) {
-    return false;
+    //  Will need to do something here to perform promotion
+    return true;
   }
 
   /*

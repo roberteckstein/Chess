@@ -11,7 +11,8 @@ public class Knight extends Piece {
 
         // we can't move the piece to a spot that has
         // a piece of the same color
-        if (end.getPiece().isWhite() == this.isWhite()) {
+
+        if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
             return false;
         }
 
@@ -24,7 +25,8 @@ public class Knight extends Piece {
 
     @Override
     public boolean performMove(Board board, Spot start, Spot end) {
-        return false;
+        //  No special items to be checked for after a move
+        return true;
     }
 
     public String toString() {
