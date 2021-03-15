@@ -25,8 +25,8 @@ public class Queen extends Piece {
           if (!board.getBox(start.getX() + i, start.getY() + i).isEmpty()) {
             return false;
           }
-          return true;
         }
+        return true;
       }
       // Moving up left
       else if (deltaX < 0 && deltaY > 0) {
