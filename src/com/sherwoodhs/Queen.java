@@ -37,6 +37,8 @@ public class Queen extends Piece {
           }
           return true;
         }
+
+      return true;
       }
       // Moving down right
       else if (deltaX > 0 && deltaY < 0) {
@@ -46,6 +48,7 @@ public class Queen extends Piece {
           }
           return true;
         }
+        return true;
       }
       // Moving down left
       else if (deltaX < 0 && deltaY < 0) {
@@ -53,8 +56,9 @@ public class Queen extends Piece {
           if (!board.getBox(start.getX() - i, start.getY() - i).isEmpty()) {
             return false;
           }
-          return true;
+          
         }
+        return true;
       }
     }
     // Checking if moved along only one axis
