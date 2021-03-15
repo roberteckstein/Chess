@@ -24,20 +24,23 @@ public class King extends Piece {
     {
         // we can't move the piece to a Spot that
         // has a piece of the same color
-        if (end.getPiece().isWhite() == this.isWhite()) {
+        if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
             return false;
         }
 
         //  King can only move
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
-        if (x + y == 1) {   //  BOB ECKSTEIN: This is not correct. King can move diagonally. Fix it.
+
+        if ((x == 0 || x == 1) && (y == 0 || y == 1)) {
             // check if this move will not result in the king
             // being attacked if so return true
             return true;
+        } else {
+            return false;
         }
 
-        return this.isValidCastling(board, start, end);
+       // return this.isValidCastling(board, start, end);
     }
 
     @Override
