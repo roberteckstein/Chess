@@ -21,7 +21,7 @@ public class Queen extends Piece {
     if (Math.abs(deltaX) == Math.abs(deltaY)) {
       // Moving up right
       if (deltaX > 0 && deltaY > 0) {
-        for (int i = 0; i < Math.abs(deltaX); i++) {
+        for (int i = 1; i < Math.abs(deltaX); i++) {
           if (!board.getBox(start.getX() + i, start.getY() + i).isEmpty()) {
             return false;
           }
@@ -30,7 +30,7 @@ public class Queen extends Piece {
       }
       // Moving up left
       else if (deltaX < 0 && deltaY > 0) {
-        for (int i = 0; i < Math.abs(deltaX); i++) {
+        for (int i = 1; i < Math.abs(deltaX); i++) {
           if (!board.getBox(start.getX() - i, start.getY() + i).isEmpty()) {
             return false;
           }
@@ -41,7 +41,7 @@ public class Queen extends Piece {
       }
       // Moving down right
       else if (deltaX > 0 && deltaY < 0) {
-        for (int i = 0; i < Math.abs(deltaX); i++) {
+        for (int i = 1; i < Math.abs(deltaX); i++) {
           if (!board.getBox(start.getX() + i, start.getY() - i).isEmpty()) {
             return false;
           }
@@ -51,7 +51,7 @@ public class Queen extends Piece {
       }
       // Moving down left
       else if (deltaX < 0 && deltaY < 0) {
-        for (int i = 0; i < Math.abs(deltaX); i++) {
+        for (int i = 1; i < Math.abs(deltaX); i++) {
           if (!board.getBox(start.getX() - i, start.getY() - i).isEmpty()) {
             return false;
           }
