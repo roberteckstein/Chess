@@ -1,9 +1,10 @@
 package com.sherwoodhs;
 
-public class Spot {
+import java.io.Serializable;
+
+public class Spot implements Serializable {
 
     private Piece piece;
-    private boolean empty;
     private int x;
     private int y;
 
@@ -12,14 +13,12 @@ public class Spot {
         this.setPiece(piece);
         this.setX(x);
         this.setY(y);
-        this.empty = false;
     }
 
     public Spot(int x, int y)
     {
         this.setX(x);
         this.setY(y);
-        this.empty = true;
     }
 
     public Piece getPiece()
@@ -32,15 +31,9 @@ public class Spot {
         this.piece = p;
     }
 
-    public void setEmpty(boolean empty){
+    public boolean isEmpty() {
 
-      this.empty = empty;
-      
-    }
-
-    public boolean isEmpty(){
-
-      return this.empty;
+      return (piece == null);
 
     }
 
