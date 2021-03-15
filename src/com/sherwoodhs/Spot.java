@@ -63,7 +63,7 @@ public class Spot implements Serializable {
         if (!this.isEmpty()){
             return piece.toString();
         } else {
-            return " ☐☐ ";
+            return " __ ";
         }
     }
 }

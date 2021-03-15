@@ -9,7 +9,8 @@ public class Pawn extends Piece {
   }
 
   //For testing
-  @Override boolean performMove(Board board, Spot start, Spot end) {
+  @Override
+  public boolean performMove(Board board, Spot start, Spot end) {
     return true;
   }
   
