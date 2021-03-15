@@ -69,7 +69,7 @@ public class Bishop extends Piece {
 
   @Override
   public boolean performMove(Board board, Spot start, Spot end) {
-    return false;
+    return true;
   }
 
   public String toString() {

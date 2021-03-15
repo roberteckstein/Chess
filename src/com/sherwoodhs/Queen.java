@@ -3,7 +3,6 @@ package com.sherwoodhs;
 public class Queen extends Piece {
 
   // Andrew Hiser and Hayden deBoer
-  // Andrew have you been working on this at all?
 
   public Queen(boolean white) {
     super(white);
@@ -59,6 +58,8 @@ public class Queen extends Piece {
           
         }
         return true;
+      } else {
+        return false;
       }
     }
     // Checking if moved along only one axis
