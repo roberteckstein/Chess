@@ -11,16 +11,22 @@ public class Rook extends Piece {
 
   @Override
   public boolean canMove(Board board, Spot start, Spot end) {
-    if (end.getPiece().isWhite() == this.isWhite()) {
+
+    if ((end.getPiece() != null) && (end.getPiece().isWhite() == this.isWhite())) {
       return false;
     } else {
+
+      int deltaX = end.getX() - start.getX();
+      int deltaY = end.getY() - start.getY();
+
       // checks if selection is on either the same x or y, easy optimization
-      if (end.getX() != start.getX() || end.getY() != start.getY()) {
+      if (end.getX() != start.getX() && end.getY() != start.getY()) {
         return false;
       } else {
+
         // moving right
-        if (start.getX() < end.getX()) {
-          for (int i = start.getX() + 1; i < end.getX() - 1; i++) {
+        if (deltaX > 0) {
+          for (int i = start.getX() + 1; i < end.getX(); i++) {
             if (!board.getBox(i, start.getY()).isEmpty()) {
               return false;
             }
@@ -29,8 +35,8 @@ public class Rook extends Piece {
           return true;
         }
         // moving left
-        else if (start.getX() > end.getX()) {
-          for (int i = start.getX() - 1; i > end.getX() + 1; i--) {
+        else if (deltaX < 0) {
+          for (int i = start.getX() - 1; i > end.getX(); i--) {
             if (!board.getBox(i, start.getY()).isEmpty()) {
               return false;
             }
@@ -39,8 +45,8 @@ public class Rook extends Piece {
           return true;
         }
         // moving up
-        else if (start.getY() < end.getY()) {
-          for (int i = start.getY() + 1; i < end.getY() - 1; i++) {
+        else if (deltaY > 0) {
+          for (int i = start.getY() + 1; i < end.getY(); i++) {
             if (!board.getBox(start.getX(), i).isEmpty()) {
               return false;
             }
@@ -49,8 +55,8 @@ public class Rook extends Piece {
           return true;
         }
         // moving down
-        else if (start.getY() > end.getY()) {
-          for (int i = start.getY() - 1; i > end.getY() + 1; i--) {
+        else if (deltaY < 0) {
+          for (int i = start.getY() - 1; i > end.getY(); i--) {
             if (!board.getBox(start.getX(), i).isEmpty()) {
               return false;
             }
