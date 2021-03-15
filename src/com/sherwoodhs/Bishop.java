@@ -13,7 +13,7 @@ public class Bishop extends Piece{
       int deltaX = end.getX() - start.getX();
       int deltaY = end.getY() - start.getY();
 
-      if(end.getPiece().isWhite() == this.isWhite()) {
+      if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
           return false;
       }
 
