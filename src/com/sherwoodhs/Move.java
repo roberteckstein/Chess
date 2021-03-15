@@ -1,6 +1,10 @@
 package com.sherwoodhs;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
+
+    public static final String MOVE_PROPERTY = "Move";
 
     private Player player;
     private Spot start;
