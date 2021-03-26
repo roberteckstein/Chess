@@ -16,6 +16,8 @@ public class Game {
     private GameStatus status;
     public static final String GAME_STATUS_PROPERTY = "GameStatus";
 
+    private Spot kingPosition;
+    
     private final Board board = new Board();
     private List<Move> movesPlayed;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -42,6 +44,15 @@ public class Game {
       return board;
     }
 
+    public Spot getKingPosition() {
+        return kingPosition;
+    }
+
+    public Spot setKingPosition(Spot kingPos){
+        kingPosition = kingPos;
+        return kingPosition;
+    }
+    
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -80,6 +91,50 @@ public class Game {
       return this.getStatus() != GameStatus.ACTIVE;
     }
 
+    public boolean isCheck(Board board, Spot king) {
+        for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)
+                if ((!board.getBox(x,y).isEmpty()) && !board.getBox(x,y).getPiece().isWhite() && x != king.getX() && y != king.getY())
+                    if (board.getBox(x,y).getPiece().canMove(board, board.getBox(x,y), king))
+                        return true;
+        return false;
+    }
+
+    public boolean canPieceBlock(Board board, Spot start, Spot king, Piece piece) {
+        for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)
+                if (piece.canMove(board, start, board.getBox(x,y)) && !isCheck(board, king)){
+                    return true;
+                }
+        return false;
+    }
+
+    public boolean canBlockCheck(Board board, Spot end) {
+        for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)
+                if (!board.getBox(x,y).getPiece().isWhite() && x != end.getX() && y != end.getY())
+                    if (canPieceBlock(board, board.getBox(x,y), end, board.getBox(x,y).getPiece())){
+                        return true;
+                    }
+        return false;
+    }
+
+    public boolean isCheckmate(Board board, Spot king) {
+        int x = king.getX();
+        int y = king.getY();
+
+        for (int i = -1; i < 2; i++)
+            for (int k = -1; k < 2; k++)
+                if (king.getPiece().canMove(board, king, board.getBox(x+i, y+k))){
+                    return false;
+                } else if (canBlockCheck(board, king)) {
+                    return false;
+                }
+
+        Game.getInstance().setStatus(GameStatus.WHITE_WIN);
+
+        return true;
+    }
 
     public boolean playerMove(Player player, int startX, int startY, int endX, int endY) {
       Spot startBox = board.getBox(startX, startY);
@@ -111,6 +166,15 @@ public class Game {
         return false;
       }
 
+      // in check?
+      Board potentialboard = board;
+      potentialboard.boxes[move.getEnd().getX()][move.getEnd().getY()] = new Spot(move.getEnd().getX(), move.getEnd().getY(), move.getStart().getPiece());
+      potentialboard.boxes[move.getStart().getX()][move.getStart().getY()] = new Spot(move.getStart().getX(), move.getStart().getY(), null);
+
+      if (isCheck(potentialboard, kingPosition)){
+          return false;
+      }
+        
       // valid move?
       if (!sourcePiece.canMove(board, move.getStart(), move.getEnd())) {
         return false;
@@ -130,6 +194,15 @@ public class Game {
         move.setCastlingMove(true);
       }
 
+      // checkmate?
+      if (isCheck(board, kingPosition)){
+          if (isCheckmate(board, kingPosition)){
+              System.out.println("Checkmate!");
+              return true;
+              // returns true because game status ends game
+          }
+      }
+        
       // store the move
       movesPlayed.add(move);
 
