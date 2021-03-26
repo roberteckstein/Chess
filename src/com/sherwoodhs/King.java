@@ -22,6 +22,11 @@ public class King extends Piece {
     @Override
     public boolean canMove(Board board, Spot start, Spot end)
     {
+        // cannot move to same spot
+        if (start == end) {
+            return false;
+        }
+
         // we can't move the piece to a Spot that
         // has a piece of the same color
         if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
@@ -32,9 +37,10 @@ public class King extends Piece {
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
 
-        if ((x == 0 || x == 1) && (y == 0 || y == 1)) {
+        if ((x == 0 || x == 1) && (y == 0 || y == 1) && !Game.getInstance().isCheck(board, end)) {
             // check if this move will not result in the king
             // being attacked if so return true
+            Game.getInstance().setKingPosition(end);
             return true;
         } else {
             return false;
