@@ -82,6 +82,7 @@ public class Game {
 
       board.resetBoard();
       movesPlayed.clear();
+      Game.getInstance().setKingPosition(new Spot(0,3));
 
       setStatus(GameStatus.ACTIVE);
 
