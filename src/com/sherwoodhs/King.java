@@ -27,6 +27,11 @@ public class King extends Piece {
             return false;
         }
 
+        if (this.isValidCastling(board, start, end) && isCastlingMove(start, end)) {
+            return true;
+        }
+
+
         // we can't move the piece to a Spot that
         // has a piece of the same color
         if ((!end.isEmpty()) && (end.getPiece().isWhite() == this.isWhite())) {
@@ -42,11 +47,10 @@ public class King extends Piece {
             // being attacked if so return true
             Game.getInstance().setKingPosition(end);
             return true;
-        } else {
-            return false;
-        }
 
-       // return this.isValidCastling(board, start, end);
+        }
+            return false;
+
     }
 
     @Override
@@ -55,8 +59,7 @@ public class King extends Piece {
         return true;
     }
 
-    private boolean isValidCastling(Board board,
-                                    Spot start, Spot end)
+    private boolean isValidCastling(Board board, Spot start, Spot end)
     {
 
         if (this.isCastlingDone()) {
@@ -65,7 +68,19 @@ public class King extends Piece {
 
         // Logic for returning true or false
 
-        return true;
+        Piece leftRook = board.getBox(0,0).getPiece();
+        Piece rightRook = board.getBox(0,7).getPiece();
+        Piece kingSpot = board.getBox(0,3).getPiece();
+
+        if ((leftRook instanceof Rook) && (kingSpot instanceof King) && (board.getBox(0,1).isEmpty()) && board.getBox(0,2).isEmpty()) {
+            setCastlingDone(true);
+            return true;
+        } else if ((rightRook instanceof Rook) && (kingSpot instanceof King) && (board.getBox(0,4).isEmpty()) && (board.getBox(0,5).isEmpty()) && (board.getBox(0,6).isEmpty())) {
+            setCastlingDone(true);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isCastlingMove(Spot start, Spot end)
@@ -73,7 +88,16 @@ public class King extends Piece {
         // check if the starting and
         // ending position are correct
 
-        return true;
+        int endX = end.getX();
+        int endY = end.getY();
+
+        if ((start.getPiece() instanceof King) && (endX == 6) && (endY == 0)) {
+            return true;
+        } else if ((start.getPiece() instanceof King) && (endX == 1) && (endY == 0)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String toString() {
