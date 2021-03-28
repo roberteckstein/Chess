@@ -93,11 +93,15 @@ public class Game {
     }
 
     public boolean isCheck(Board board, Spot king) {
+
+
         for (int x = 0; x < 8; x++)
             for (int y = 0; y < 8; y++)
-                if ((!board.getBox(x,y).isEmpty()) && !board.getBox(x,y).getPiece().isWhite() && x != king.getX() && y != king.getY())
-                    if (board.getBox(x,y).getPiece().canMove(board, board.getBox(x,y), king))
+                if ((!board.getBox(x,y).isEmpty()) && !board.getBox(x,y).getPiece().isWhite() && x != king.getX() && y != king.getY()) {
+                    if (board.getBox(x, y).getPiece().canMove(board, board.getBox(x, y), king)) {
                         return true;
+                    }
+                }
         return false;
     }
 
@@ -124,13 +128,15 @@ public class Game {
         int x = king.getX();
         int y = king.getY();
 
-        for (int i = -1; i < 2; i++)
-            for (int k = -1; k < 2; k++)
-                if (king.getPiece().canMove(board, king, board.getBox(x+i, y+k))){
-                    return false;
-                } else if (canBlockCheck(board, king)) {
-                    return false;
-                }
+        if(isCheck(board, king)) {
+            for (int i = -1; i < 2; i++)
+                for (int k = -1; k < 2; k++)
+                    if (king.getPiece().canMove(board, king, board.getBox(Math.abs(x + i), Math.abs(y + k)))){
+                        return false;
+                    } else if (canBlockCheck(board, king)) {
+                        return false;
+                    }
+        }
 
         Game.getInstance().setStatus(GameStatus.WHITE_WIN);
 
@@ -168,13 +174,19 @@ public class Game {
       }
 
       // in check?
-      Board potentialboard = board;
-      potentialboard.boxes[move.getEnd().getX()][move.getEnd().getY()] = new Spot(move.getEnd().getX(), move.getEnd().getY(), move.getStart().getPiece());
-      potentialboard.boxes[move.getStart().getX()][move.getStart().getY()] = new Spot(move.getStart().getX(), move.getStart().getY(), null);
-
-      if (isCheck(potentialboard, kingPosition)){
-          return false;
+      Board potentialBoard = new Board();
+      // tried to override the clone function but couldn't get it to work
+      if (sourcePiece.isWhite()) {
+          for (int x = 0; x < 8; x++)
+              for (int y = 0; y < 8; y++)
+                  potentialBoard.boxes[x][y] = board.boxes[x][y];
+          potentialBoard.boxes[move.getEnd().getX()][move.getEnd().getY()] = new Spot(move.getEnd().getX(), move.getEnd().getY(), move.getStart().getPiece());
+          potentialBoard.boxes[move.getStart().getX()][move.getStart().getY()] = new Spot(move.getStart().getX(), move.getStart().getY(), null);
       }
+
+        if((sourcePiece.isWhite()) && isCheck(potentialBoard, kingPosition)) {
+            return false;
+        }
         
       // valid move?
       if (!sourcePiece.canMove(board, move.getStart(), move.getEnd())) {
@@ -190,31 +202,31 @@ public class Game {
       }
 
       // castling?
-      if (sourcePiece != null && sourcePiece instanceof King
-          && ((King) sourcePiece).isCastlingMove(move.getStart(), move.getEnd())) {
+      if (sourcePiece != null && sourcePiece instanceof King && ((King) sourcePiece).isCastlingMove(move.getStart(), move.getEnd())) {
         move.setCastlingMove(true);
-      }
-
-      // checkmate?
-      if (isCheck(board, kingPosition)){
-          if (isCheckmate(board, kingPosition)){
-              System.out.println("Checkmate!");
-              return true;
-              // returns true because game status ends game
-          }
       }
         
       // store the move
       movesPlayed.add(move);
 
-      // move piece from the stat box to end box
+      // checkmate?
+        if (isCheck(board, kingPosition))
+            if (isCheckmate(board, kingPosition) && !sourcePiece.isWhite()){
+                System.out.println("Checkmate");
+                return true;
+                // returns true because game status ends game
+            }
+
+
+
+        // move piece from the stat box to end box
       move.getEnd().setPiece(move.getStart().getPiece());
       move.getStart().setPiece(null);
       pcs.firePropertyChange(Move.MOVE_PROPERTY, null, move);
 
 
 
-      if (destPiece != null && destPiece instanceof King) {
+        if (destPiece != null && destPiece instanceof King) {
         if (player.isWhiteSide()) {
           this.setStatus(GameStatus.WHITE_WIN);
           return true;
@@ -228,7 +240,9 @@ public class Game {
       if (!sourcePiece.performMove(board, move.getStart(), move.getEnd()))
         return false;
 
-      // set the current turn to the other player
+
+
+        // set the current turn to the other player
       if (this.currentPlayer == players[0]) {
         setCurrentPlayer(players[1]);
       } else {
