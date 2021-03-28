@@ -12,6 +12,7 @@ public class Main {
 
         Game game = Game.getInstance();
         game.initialize(player1, player2);
+        game.setKingPosition(game.getBoard().getBox(0,03));
 
         //  Create and display the GUI
 
